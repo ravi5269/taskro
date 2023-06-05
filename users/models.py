@@ -9,17 +9,17 @@ from base.models import BaseModel
 import uuid
 
 
-class User(AbstractBaseUser, PermissionsMixin, BaseModel):
+class User(AbstractBaseUser):
     """Custom User Model"""
 
     USERNAME_FIELD = "username"
     REQUIRED_FIELDS = ["first_name"]
-    ROLE_CHOICES = ((1, "Role1"), (2, "Role2"))
+    ROLE_CHOICES = (('1', "Role1"), ('2', "Role2"))
 
     uuid = models.UUIDField(null=True, blank=True, unique=True, default=uuid.uuid4)
 
     username = models.CharField(
-        _("username"),
+        ("username"),
         max_length=10,
         null=False,
         blank=True,
@@ -29,27 +29,30 @@ class User(AbstractBaseUser, PermissionsMixin, BaseModel):
     )
 
     first_name = models.CharField(
-        _("first name"), max_length=50, blank=True, db_index=True
+        ("first name"), max_length=50, blank=True, db_index=True
     )
     middle_name = models.CharField(
-        _("middle name"), max_length=50, blank=True, db_index=True
+        ("middle name"), max_length=50, blank=True, db_index=True
     )
     last_name = models.CharField(
-        _("last name"), max_length=50, blank=True, db_index=True
+        ("last name"), max_length=50, blank=True, db_index=True
     )
 
     role_title = models.CharField(
-        _("organization"), max_length=100, choices=ROLE_CHOICES
+        ("Role"), max_length=100, choices=ROLE_CHOICES
     )
     dept = models.CharField(
-        _("dept"), max_length=50, blank=True, db_index=True
+        ("dept"), max_length=50, blank=True, db_index=True
     )
     location = models.CharField(
-        _("location"), max_length=50, blank=True, db_index=True
+        ("location"), max_length=50, blank=True, db_index=True
     )
     employee_no = models.CharField(
-        _("employee number"), max_length=50, blank=True, db_index=True
+        ("employee number"), max_length=50, blank=True, db_index=True
     )
-    is_active = models.BooleanField(_("active"), default=True)
-    is_staff = models.BooleanField(_("staff status"), default=False)
+    is_active = models.BooleanField(("active"), default=True)
+    is_staff = models.BooleanField(("staff status"), default=False)
     is_verified = models.BooleanField(default=False)
+
+    created_at = models.DateTimeField(("created_at"), auto_now=False, auto_now_add=True)
+    updated_at = models.DateTimeField(("updated_at"), auto_now=True, auto_now_add=False)
