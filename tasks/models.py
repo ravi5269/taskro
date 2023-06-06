@@ -23,7 +23,7 @@ class SubTask(BaseModel):
         ("2", "in_progress"),
         ("3", "review"),
         ("4", "completed"),
-        ("5", "cancle"),
+        ("5", "cancel"),
     )
 
     name = models.CharField(("NAME"), max_length=100)
