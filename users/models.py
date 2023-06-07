@@ -1,19 +1,22 @@
+
 from django.db import models
 from django.contrib.auth.models import (
-    AbstractBaseUser,
+    AbstractUser,
     BaseUserManager,
     PermissionsMixin,
 )
 from base.models import BaseModel
 import uuid
 
+from django.contrib.auth.models import AbstractUser
 
-class User(AbstractBaseUser):
+
+class User(AbstractUser):
     """Custom User Model"""
 
     USERNAME_FIELD = "username"
     REQUIRED_FIELDS = ["first_name"]
-    ROLE_CHOICES = (("1", "Role1"), ("2", "Role2"))
+    ROLE_CHOICES = (('1', "Role1"), ('2', "Role2"))
 
     uuid = models.UUIDField(null=True, blank=True, unique=True, default=uuid.uuid4)
 
@@ -37,9 +40,15 @@ class User(AbstractBaseUser):
         ("last name"), max_length=50, blank=True, db_index=True
     )
 
-    role_title = models.CharField(("Role"), max_length=100, choices=ROLE_CHOICES)
-    dept = models.CharField(("dept"), max_length=50, blank=True, db_index=True)
-    location = models.CharField(("location"), max_length=50, blank=True, db_index=True)
+    role_title = models.CharField(
+        ("Role"), max_length=100, choices=ROLE_CHOICES
+    )
+    dept = models.CharField(
+        ("dept"), max_length=50, blank=True, db_index=True
+    )
+    location = models.CharField(
+        ("location"), max_length=50, blank=True, db_index=True
+    )
     employee_no = models.CharField(
         ("employee number"), max_length=50, blank=True, db_index=True
     )
