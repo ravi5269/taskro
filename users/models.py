@@ -15,8 +15,7 @@ class User(AbstractUser):
     """Custom User Model"""
 
     USERNAME_FIELD = "username"
-    REQUIRED_FIELDS = ["first_name"]
-    ROLE_CHOICES = (('1', "Role1"), ('2', "Role2"))
+    REQUIRED_FIELDS = []
 
     uuid = models.UUIDField(null=True, blank=True, unique=True, default=uuid.uuid4)
 
@@ -30,18 +29,12 @@ class User(AbstractUser):
         db_column="username",
     )
 
-    first_name = models.CharField(
-        ("first name"), max_length=50, blank=True, db_index=True
-    )
-    middle_name = models.CharField(
-        ("middle name"), max_length=50, blank=True, db_index=True
-    )
-    last_name = models.CharField(
-        ("last name"), max_length=50, blank=True, db_index=True
+    name = models.CharField(
+        ("name"), max_length=50, blank=True, db_index=True
     )
 
     role_title = models.CharField(
-        ("Role"), max_length=100, choices=ROLE_CHOICES
+        ("Role"), max_length=100, blank=True
     )
     dept = models.CharField(
         ("dept"), max_length=50, blank=True, db_index=True
