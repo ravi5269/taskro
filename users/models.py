@@ -1,4 +1,3 @@
-
 from django.db import models
 from django.contrib.auth.models import (
     AbstractUser,
@@ -29,19 +28,11 @@ class User(AbstractUser):
         db_column="username",
     )
 
-    name = models.CharField(
-        ("name"), max_length=50, blank=True, db_index=True
-    )
+    name = models.CharField(("name"), max_length=50, blank=True, db_index=True)
 
-    role_title = models.CharField(
-        ("Role"), max_length=100, blank=True
-    )
-    dept = models.CharField(
-        ("dept"), max_length=50, blank=True, db_index=True
-    )
-    location = models.CharField(
-        ("location"), max_length=50, blank=True, db_index=True
-    )
+    role_title = models.CharField(("Role"), max_length=100, blank=True)
+    dept = models.CharField(("dept"), max_length=50, blank=True, db_index=True)
+    location = models.CharField(("location"), max_length=50, blank=True, db_index=True)
     employee_no = models.CharField(
         ("employee number"), max_length=50, blank=True, db_index=True
     )
