@@ -9,16 +9,18 @@ from rest_framework import status
 
 # Create your views here.
 class UserRegisterAPIView(APIView):
-    permission_classes = (AllowAny,)
-
+    permission_classes = (AllowAny)
     def post(self, request):
         requested_data = request.data
+        # import pdb; pdb.set_trace()
         try:
-            if User.objects.filter(username=requested_data.get("username")).exists():
-                return Response("user already exists", status=status.HTTP_302_FOUND)
+            if User.objects.filter(username=requested_data.get("username")):
+                return Response({"message":"user already exists", "status": False}, status=status.HTTP_302_FOUND)
             serializer = UserSerializer(data=requested_data)
             if serializer.is_valid(raise_exception=True):
                 serializer.create(validated_data=requested_data)
-                return Response("Success", status=status.HTTP_201_CREATED)
+                return Response({"message":" user registrations successful", "status": True}, status=status.HTTP_201_CREATED)
         except Exception as e:
-            return Response("user already register", status=status.HTTP_302_FOUND)
+            return Response({"message":"user already register","status":False}, status=status.HTTP_302_FOUND)
+
+

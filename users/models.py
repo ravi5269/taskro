@@ -36,9 +36,4 @@ class User(AbstractUser):
     employee_no = models.CharField(
         ("employee number"), max_length=50, blank=True, db_index=True
     )
-    is_active = models.BooleanField(("active"), default=True)
-    is_staff = models.BooleanField(("staff status"), default=False)
-    is_verified = models.BooleanField(default=False)
 
-    created_at = models.DateTimeField(("created_at"), auto_now=False, auto_now_add=True)
-    updated_at = models.DateTimeField(("updated_at"), auto_now=True, auto_now_add=False)
