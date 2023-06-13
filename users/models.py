@@ -36,4 +36,3 @@ class User(AbstractUser):
     employee_no = models.CharField(
         ("employee number"), max_length=50, blank=True, db_index=True
     )
-
