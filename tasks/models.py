@@ -3,19 +3,8 @@ from base.models import BaseModel
 from users.models import uuid
 from users.models import User
 
-# Create your models here.
 
-
-class Task(BaseModel):
-    name = models.CharField(("NAME"), max_length=100)
-    description = models.CharField(("DESCRIPTION"), max_length=100)
-    owner = models.OneToOneField(User, on_delete=models.CASCADE)
-    subtask = models.CharField(("SUBTASK"), max_length=100)
-    is_completed = models.BooleanField(default=False)
-
-    def __str__(self) -> str:
-        return self.name
-
+# Create your models here
 
 class SubTask(BaseModel):
     STATUS_CHOICE = (
@@ -30,7 +19,17 @@ class SubTask(BaseModel):
     description = models.CharField(("DESCRIPTION"), max_length=100)
     assigned = models.OneToOneField(User, on_delete=models.CASCADE)
     status = models.CharField(("STATUS"), choices=STATUS_CHOICE)
-    task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name="sub_tasks")
+
+    def __str__(self) -> str:
+        return self.name
+
+
+class Task(BaseModel):
+    name = models.CharField(("NAME"), max_length=100)
+    description = models.CharField(("DESCRIPTION"), max_length=100)
+    owner = models.OneToOneField(User, on_delete=models.CASCADE)
+    subtask = models.ManyToManyField(SubTask)
+    is_completed = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return self.name
