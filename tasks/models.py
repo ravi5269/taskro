@@ -6,6 +6,7 @@ from users.models import User
 
 # Create your models here
 
+
 class SubTask(BaseModel):
     STATUS_CHOICE = (
         ("1", "todo"),

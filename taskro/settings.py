@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     "users",
     "tasks",
     "rest_framework",
-    "rest_framework.authtoken",
     "rest_framework_simplejwt",
 ]
 
@@ -143,6 +142,11 @@ REST_FRAMEWORK = {
 JWT_AUTH = {
     "JWT_VERIFY": True,
     "JWT_VERIFY_EXPIRATION": True,
-    "JWT_EXPIRATION_DELTA": datetime.timedelta(days=1),
+    "JWT_EXPIRATION_DELTA": datetime.timedelta(days=10),
+    "JWT_REFRESH_EXPIRATION_DELTA": datetime.timedelta(days=1),
     "JWT_AUTH_HEADER_PREFIX": "Bearer",
+}
+DEFAULTS = {
+    "ACCESS_TOKEN_LIFETIME": datetime.timedelta(days=10),
+    "REFRESH_TOKEN_LIFETIME": datetime.timedelta(days=1),
 }
