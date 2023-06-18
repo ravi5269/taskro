@@ -10,7 +10,6 @@ from users.admin import User
 from rest_framework.generics import get_object_or_404
 
 
-
 # Create your views here.
 class UserRegisterAPIView(APIView):
     permission_classes = (AllowAny,)

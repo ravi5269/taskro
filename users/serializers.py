@@ -36,7 +36,6 @@ class UserSerializer(serializers.ModelSerializer):
         instance.location = validated_data.get("location", instance.location)
         instance.dept = validated_data.get("dept", instance.dept)
 
-        
         instance.save()
 
         return instance
